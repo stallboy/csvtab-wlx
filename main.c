@@ -342,9 +342,9 @@ HWND APIENTRY ListLoadW (HWND hListerWnd, TCHAR* fileToLoad, int showFlags) {
 }
 
 HWND APIENTRY ListLoad (HWND hListerWnd, char* fileToLoad, int showFlags) {
-	DWORD size = MultiByteToWideChar(CP_ACP, 0, fileToLoad, -1, NULL, 0);
+	DWORD size = MultiByteToWideChar(936, 0, fileToLoad, -1, NULL, 0);
 	TCHAR* fileToLoadW = (TCHAR*)calloc (size, sizeof (TCHAR));
-	MultiByteToWideChar(CP_ACP, 0, fileToLoad, -1, fileToLoadW, size);
+	MultiByteToWideChar(936, 0, fileToLoad, -1, fileToLoadW, size);
 	HWND hWnd = ListLoadW(hListerWnd, fileToLoadW, showFlags);
 	free(fileToLoadW);
 	return hWnd;
@@ -908,9 +908,9 @@ LRESULT CALLBACK cbNewMain(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 			}
 			
 			if (codepage == CP_ACP) {
-				DWORD len = MultiByteToWideChar(CP_ACP, 0, rawdata, -1, NULL, 0);
+				DWORD len = MultiByteToWideChar(936, 0, rawdata, -1, NULL, 0);
 				data = (TCHAR*)calloc (len, sizeof (TCHAR));
-				if (!MultiByteToWideChar(CP_ACP, 0, rawdata + leadZeros, -1, data, len))
+				if (!MultiByteToWideChar(936, 0, rawdata + leadZeros, -1, data, len))
 					codepage = -1;
 				free(rawdata);
 			}
